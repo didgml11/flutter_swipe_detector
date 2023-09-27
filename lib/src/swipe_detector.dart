@@ -177,27 +177,31 @@ class _SwipeDetectorState extends State<SwipeDetector> {
   }
 
   void _calculateAndExecute() {
-    final offset = _updatePosition - _startPosition;
-    final direction = _getSwipeDirection(offset);
-
-    widget.onSwipe?.call(
-      direction,
-      offset,
-    );
-
-    switch (direction) {
-      case SwipeDirection.up:
-        widget.onSwipeUp?.call(offset);
-        break;
-      case SwipeDirection.down:
-        widget.onSwipeDown?.call(offset);
-        break;
-      case SwipeDirection.left:
-        widget.onSwipeLeft?.call(offset);
-        break;
-      case SwipeDirection.right:
-        widget.onSwipeRight?.call(offset);
-        break;
+    try {
+      final offset = _updatePosition - _startPosition;
+      final direction = _getSwipeDirection(offset);
+  
+      widget.onSwipe?.call(
+        direction,
+        offset,
+      );
+  
+      switch (direction) {
+        case SwipeDirection.up:
+          widget.onSwipeUp?.call(offset);
+          break;
+        case SwipeDirection.down:
+          widget.onSwipeDown?.call(offset);
+          break;
+        case SwipeDirection.left:
+          widget.onSwipeLeft?.call(offset);
+          break;
+        case SwipeDirection.right:
+          widget.onSwipeRight?.call(offset);
+          break;
+      }
+    }
+    catch (_) {
     }
   }
 
